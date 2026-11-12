@@ -89,6 +89,7 @@ nohup python baseline.py > baseline_run.txt 2>&1 &
 tail -f ~/buckets/b1/exp/baseline/log.txt
 ```
 
+- **Tiempos y memoria**, medidos con el dataset completo en 4 hilos: las variables se arman en unos 2 minutos (una sola vez, después se reutilizan), y cada corrida de la bayesiana tarda entre 1 y 3 minutos con learning rates de 0,02 a 0,05 (más con 0,01). En total son unas 2 a 4 horas en 4 hilos, y menos con 8 o 12. El pico de memoria es de unos 10 GB: conviene una máquina de 32 GB.
 - Necesita `lightgbm`, `optuna`, `duckdb` y `pyarrow`. Si falta alguno, lo instala solo.
 - **Es resumible.** Si Google borra la máquina spot, alcanza con lanzar el mismo comando en otra. Retoma la bayesiana desde el estudio guardado en el bucket y saltea las semillas que ya están.
 - `touch ~/buckets/b1/exp/baseline/CORTAR_BAYESIANA` termina la corrida en curso y sigue con las semillas con lo mejor que haya.
